@@ -7,10 +7,11 @@ This game is currently in development
 *Done* set up file
 *Done* set up github repo
 *Done* Basic Project Setup
-set up redux
-set up gameboard
 set up sprite
+set up gameboard
+
 get sprite on gameboard
+set up redux
 stretch: get sprite moving via turn based selection
 
 

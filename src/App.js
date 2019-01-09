@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Game from './containers/game'
 
 
 class App extends Component {
@@ -6,6 +7,7 @@ class App extends Component {
     return (
       <div>
       lets Play TAG
+      <Game />
       </div>
     );
   }
