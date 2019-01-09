@@ -12,3 +12,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.gameContainer {
+  display: grid;
+  grid-template-columns: 1fr 608px 1fr;
+
+}

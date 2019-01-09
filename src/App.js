@@ -6,7 +6,7 @@ class App extends Component {
   render() {
     return (
       <div>
-      lets Play TAG
+      <h1> Let's Play TAG </h1>
       <Game />
       </div>
     );
