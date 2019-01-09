@@ -1,0 +1,24 @@
+.boundariesDiv {
+  border: 3px solid Black;
+  width: 480px;
+  height: 480px;
+}
+
+
+.row {
+  width: 75px;
+  height: 75px;
+  border: 1px solid black;
+}
+
+.column {
+  float: left;
+}
+
+.aDiv {
+  background-image: url(./boardTextures/darkGrass.png);
+}
+
+.bDiv {
+  background-image: url(./boardTextures/brightGrass.png);
+}

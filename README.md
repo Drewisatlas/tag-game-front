@@ -7,7 +7,7 @@ This game is currently in development
 *Done* set up file
 *Done* set up github repo
 *Done* Basic Project Setup
-set up sprite
+*Done* set up static sprite
 set up gameboard
 
 get sprite on gameboard
