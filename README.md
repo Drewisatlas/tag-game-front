@@ -6,7 +6,7 @@ This game is currently in development
 ###tasks 1/9/2019
 *Done* set up file
 *Done* set up github repo
-Basic Project Setup
+*Done* Basic Project Setup
 set up redux
 set up gameboard
 set up sprite
