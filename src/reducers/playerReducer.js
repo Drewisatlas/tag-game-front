@@ -1,7 +1,7 @@
 //responsible for dealing with state for the player component
 
 const initialState ={
-  gridArea: 'a1',
+  gridArea: '4/5',
 }
 
 const playerReducer = (state=initialState, action) => {

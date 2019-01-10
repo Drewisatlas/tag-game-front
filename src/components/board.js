@@ -6,7 +6,7 @@ import Player1 from './playerPiece.js'
 
 function Board(props){
   return(
-    <div className='Boundaries'>
+    <>
       <div className='column'>
         <div className='aDiv item'></div>
         <div className='bDiv item'></div>
@@ -88,7 +88,7 @@ function Board(props){
         <div className='bDiv item'></div>
         <div className='aDiv item'></div>
       </div>
-    </div>
+    </>
   )
 }
 
