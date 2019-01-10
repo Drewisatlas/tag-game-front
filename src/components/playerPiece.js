@@ -16,7 +16,8 @@ function Player(props) {
       backgroundPosition: '0 0',
       width: '50px',
       height: '74px',
-    }} />
+    }}
+    />
   )
 }
 

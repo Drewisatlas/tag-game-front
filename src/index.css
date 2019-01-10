@@ -15,6 +15,6 @@ code {
 
 .gameContainer {
   display: grid;
-  grid-template-columns: 1fr 608px 1fr;
+  grid-template-columns: 1fr 609px 1fr;
 
 }

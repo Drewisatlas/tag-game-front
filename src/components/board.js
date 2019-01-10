@@ -1,5 +1,8 @@
 import React from 'react'
 import '../board.css'
+import Player1 from './playerPiece.js'
+
+
 
 function Board(props){
   return(
