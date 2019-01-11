@@ -3,17 +3,28 @@
 
 This game is currently in development
 
-###tasks 1/9/2019
+###tasks
 *Done* set up file
 *Done* set up github repo
 *Done* Basic Project Setup
 *Done* set up static sprite
 *Done* set up gameboard
+*Done* get sprite on gameboard
+*Done* set up redux
+*Done* sprite can move with arrows
+Build Boundaries
+fix top row issue
+Make CPU Player Sprites
+Make CPU Player component
+Get CPU players on board
+Get CPU player movement logic 
 
-###tasks 1/10/2019
-get sprite on gameboard
-set up redux
-stretch: get sprite moving via turn based selection
+
+###Stretch
+Select a player
+Multiple boards
+Login
+Player Stats
 
 
 

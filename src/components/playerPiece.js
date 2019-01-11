@@ -14,7 +14,7 @@ function Player(props) {
       backgroundImage:`url(${sprite})`,
       backgroundPosition: '0 0',
       width: '50px',
-      height: '74px',
+      height: '73px',
       gridArea: props.gridArea,
       placeSelf:'center',
     }}

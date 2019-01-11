@@ -8,16 +8,31 @@ import moveHumanPlayerActionCreator from '../actions/playerActions'
 class Game extends React.Component {
 
   movementLogic = (event) => {
+    event.preventDefault();
     console.log(`${event.key}`)
-    let newCoordinates = this.props.gridArea;
+    let coordinates = this.props.gridArea.split('/')
+    let xCoord = parseInt(coordinates[1])
+    let yCoord = parseInt(coordinates[0])
+    let newCoordinates = this.props.gridArea; //set default to existing coordinates
+
+
     if (event.key === "ArrowUp"){
-      let coordinates = this.props.gridArea.split('/')
-      let updatedY= parseInt(coordinates[0]) - 1
-      newCoordinates = `${updatedY}` + '/' + coordinates[1]
+      yCoord -= 1
+    } else if (event.key === "ArrowDown"){
+      yCoord += 1
+    } else if (event.key === "ArrowLeft"){
+      xCoord -= 1
+    } else if (event.key === "ArrowRight"){
+      xCoord += 1
     }
-    console.log(newCoordinates)
+
+    newCoordinates = `${yCoord}/${xCoord}`
     //lets put logic here we calcaulate new grid area and send the result
-    this.props.moveHumanPlayerDispatch(newCoordinates)
+    if ((yCoord <= 8 && yCoord >= 1) && (xCoord >= 1 && xCoord <= 8)) {
+      this.props.moveHumanPlayerDispatch(newCoordinates)
+      console.log(`Player 1 has moved to ${newCoordinates}`)
+    }
+    console.log(`Currently at ${newCoordinates}`)
   }
 
   componentWillMount() {
