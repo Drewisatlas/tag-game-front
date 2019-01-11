@@ -1,9 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-import Player from '../components/playerPiece'
+import Player from '../components/userPlayerComponent'
+import CpuPlayer from '../components/cpuPlayerComponent'
 import Board from '../components/board'
 import moveHumanPlayerActionCreator from '../actions/playerActions'
+import startGame from '../gameLogic/startGame.js'
 
 class Game extends React.Component {
 
@@ -45,9 +47,14 @@ class Game extends React.Component {
          <div className='boardArea'>
            <Board />
            <Player />
+           <CpuPlayer />
          </div>
        </div>
      )
+  }
+
+  componentDidMount() {
+    startGame()
   }
 }
 

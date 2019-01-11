@@ -2,10 +2,12 @@
 
 import {createStore, combineReducers} from 'redux'
 import playerReducer from '../reducers/playerReducer.js'
+import cpuPlayerReducer from '../reducers/cpuPlayerReducer.js'
 
 //check reducer folders for reducers and defines a combined global state
 const rootReducer = combineReducers({
   player: playerReducer,
+  cpuPlayer: cpuPlayerReducer,
 })
 
 const store = createStore(

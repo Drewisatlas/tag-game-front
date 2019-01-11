@@ -12,12 +12,13 @@ This game is currently in development
 *Done* get sprite on gameboard
 *Done* set up redux
 *Done* sprite can move with arrows
-Build Boundaries
-fix top row issue
-Make CPU Player Sprites
+*Done* Build Boundaries
+*Done* fix top row issue
+
 Make CPU Player component
+Make CPU Player Sprites ( one *done*)
 Get CPU players on board
-Get CPU player movement logic 
+Get CPU player movement logic
 
 
 ###Stretch

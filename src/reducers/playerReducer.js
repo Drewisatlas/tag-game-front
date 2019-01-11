@@ -1,4 +1,4 @@
-//responsible for dealing with state for the player component
+//responsible for dealing with state for a user player component
 
 const initialState ={
   gridArea: '4/5',
