@@ -10,6 +10,7 @@ import startGame from '../gameLogic/startGame.js'
 class Game extends React.Component {
 
   movementLogic = (event) => {
+    console.log(this.props.cpuGridArea)
     event.preventDefault();
     console.log(`${event.key}`)
     let coordinates = this.props.gridArea.split('/')
@@ -30,7 +31,8 @@ class Game extends React.Component {
 
     newCoordinates = `${yCoord}/${xCoord}`
     //lets put logic here we calcaulate new grid area and send the result
-    if ((yCoord <= 8 && yCoord >= 1) && (xCoord >= 1 && xCoord <= 8)) {
+    if ((yCoord <= 8 && yCoord >= 1) && (xCoord >= 1 && xCoord <= 8) &&
+  (this.props.cpuGridArea !== newCoordinates)) {
       this.props.moveHumanPlayerDispatch(newCoordinates)
       console.log(`Player 1 has moved to ${newCoordinates}`)
     }
@@ -61,6 +63,7 @@ class Game extends React.Component {
 const mapStateToProps = (state) => {
   return {
     gridArea: state.player.gridArea,
+    cpuGridArea: state.cpuPlayer.gridArea,
   }
 }
 

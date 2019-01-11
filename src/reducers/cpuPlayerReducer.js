@@ -6,7 +6,7 @@ const initialState={
 
 const cpuPlayerReducer = (state=initialState, action) => {
   switch(action.type) {
-    case 'MOVE':
+    case 'MOVE_CPU':
       return {...state, gridArea: action.gridArea}
     default:
       return state

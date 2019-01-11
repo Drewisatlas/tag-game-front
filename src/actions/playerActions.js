@@ -5,4 +5,5 @@ const moveHumanPlayerActionCreator = (coordinates) => {
     }
 }
 
+
 export default moveHumanPlayerActionCreator

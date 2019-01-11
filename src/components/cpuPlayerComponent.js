@@ -11,7 +11,7 @@ function CpuPlayer (props) {
       backgroundPosition: '0 0',
       width: '50px',
       height: '73px',
-      gridArea: '4/4',
+      gridArea: props.gridArea,
       placeSelf:'center',
     }}
     />
