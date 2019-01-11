@@ -22,10 +22,11 @@ function Player(props) {
   )
 }
 
-function mapStateToProps(state){
+const mapStateToProps = (state) => {
   return {
     ...state.player,
   }
 }
 
-export default connect(mapStateToProps)(Player)
+
+export default connect(mapStateToProps)(Player) // Connect grants access to the store

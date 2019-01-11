@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Provider} from 'react-redux';
+import {Provider} from 'react-redux'; //makes store available to all container components (not explicitly)
 import store from './config/store';
 import './index.css';
 import App from './App';

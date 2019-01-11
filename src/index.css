@@ -16,5 +16,30 @@ code {
 .gameContainer {
   display: grid;
   grid-template-columns: 1fr 609px 1fr;
+}
 
+.boardArea {
+  display: grid;
+  grid-template-columns: 75px 75px 75px 75px 75px 75px 75px 75px ;
+  grid-template-rows:  75px 75px 75px 75px 75px 75px 75px 75px ;
+  border: 3px solid Black;
+}
+
+.item {
+  width: 75px;
+  height: 73px;
+  border: 1px solid black;
+  position: relative;
+}
+
+.column {
+  float: left;
+}
+
+.aDiv {
+  background-image: url(./boardTextures/darkGrass.png);
+}
+
+.bDiv {
+  background-image: url(./boardTextures/brightGrass.png);
 }

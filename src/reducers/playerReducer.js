@@ -6,6 +6,8 @@ const initialState ={
 
 const playerReducer = (state=initialState, action) => {
   switch(action.type) {
+    case 'MOVE':
+      return {...state, gridArea: action.gridArea}
     default:
       return state
   }
