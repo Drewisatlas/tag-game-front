@@ -20,6 +20,7 @@ This game is currently in development
 Make CPU Player Sprites ( one *done*)
 
 Basic turn logic
+*Done* built out basic game logic structure
   5 spaces
   get three space movement turns
   cpu will move 3 spaces and the turn will end.

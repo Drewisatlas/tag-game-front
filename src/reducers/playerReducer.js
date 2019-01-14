@@ -1,6 +1,7 @@
 //responsible for dealing with state for a user player component
 
 const initialState ={
+  player: '1',
   gridArea: '4/5',
 }
 

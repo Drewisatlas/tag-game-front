@@ -1,8 +1,9 @@
 const initialState = {
-  it: '1', //who is currently it
-  currentTurn: '1', //whose turn is it
-  playerLives: 3, //how many lives does the human player have
-  cpuPlayerLives: 3, //how many lives does the cpu player
+  players: [
+    {id: 1, lives: 3, taggable: false, controller: 'user'},
+    {id: 2, lives: 3, taggable: true, controller: 'CPU'},
+  ],
+  it: 1, //who is currently it
 }
 
 const gameReducer = (state = initialState, action) => {

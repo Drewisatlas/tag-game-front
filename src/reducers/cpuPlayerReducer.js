@@ -1,7 +1,9 @@
 //responsible for dealing with state for a CPU player component
 
 const initialState={
+  player: '2',
   gridArea: '4/4',
+
 }
 
 const cpuPlayerReducer = (state=initialState, action) => {

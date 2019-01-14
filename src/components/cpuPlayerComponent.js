@@ -5,6 +5,7 @@ import sprite from '../sprites/player2Trans.png'
 function CpuPlayer (props) {
   return(
     <div
+    player={props.player} 
     style={{
       position: 'relative',
       backgroundImage:`url(${sprite})`,
