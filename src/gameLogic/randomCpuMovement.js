@@ -3,14 +3,13 @@ import moveCpuActionCreator from '../actions/cpuPlayerActions.js'
 
 
 let state = store.getState();
-console.log(state)
 
 const randomCpuMovement = () => {
   //we need to get state each time the function is called to get a
- let coordinates= store.getState().cpuPlayer.gridArea.split('/')
+ let coordinates= store.getState().player.players[1].gridArea.split('/')
  let xCoord = parseInt(coordinates[1])
  let yCoord = parseInt(coordinates[0])
- let newCoordinates = state.cpuPlayer.gridArea
+ let newCoordinates = state.player.players[1].gridArea
 
  let randMoveDirection = Math.random();
 

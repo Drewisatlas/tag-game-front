@@ -1,9 +1,9 @@
-const moveHumanPlayerActionCreator = (coordinates) => {
+const movePlayer = (payload) => {
   return {
-      type: 'MOVE',
-      gridArea: coordinates,
+      type: 'MOVE_PLAYER',
+      players: payload,
     }
 }
 
 
-export default moveHumanPlayerActionCreator
+export default movePlayer

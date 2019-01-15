@@ -17,14 +17,15 @@ This game is currently in development
 *Done* Make CPU Player component
 *Done* Get CPU player on board
 *Done* Make CPU Player Sprites
-
-Rebuild data structure for 4 players
-render them on page
+*Done* Rebuild data structure for 4 players
+*Done* render them on page
 
 
 Basic turn logic
 *Done* built out basic game logic structure
-  5 spaces
+cpu move from it player
+5 spaces at start
+5 paces at tag 
   get three space movement turns
   cpu will move 3 spaces and the turn will end.
   I move three spaces and turn will end

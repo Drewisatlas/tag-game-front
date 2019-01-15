@@ -9,9 +9,6 @@ const startGame = () => {
   spreadOutPlayers()
   while(endGame === false) {
     userMovement()
-    cpuMovement(2)
-    cpuMovement(3)
-    cpuMovement(4)
   }
 }
 

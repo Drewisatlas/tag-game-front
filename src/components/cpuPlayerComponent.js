@@ -5,9 +5,6 @@ import sprite4 from '../sprites/player4.png'
 
 function CpuPlayer (props) {
 
-  let sprite = 'sprite' + `${props.player.id}`
-  console.log(sprite)
-
   return(
     <div
     player={props.player.id}

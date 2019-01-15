@@ -6,7 +6,6 @@ import {connect} from 'react-redux'
 
 function Player(props) {
 
-  console.log(`url('../sprites/${props.player.sprite}')`)
   return(
     <div
     player={props.player.id}
