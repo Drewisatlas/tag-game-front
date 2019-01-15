@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-import Player from '../components/userPlayerComponent'
+import UserPlayer from '../components/userPlayerComponent'
 import CpuPlayer from '../components/cpuPlayerComponent'
 import Board from '../components/board'
 import moveHumanPlayerActionCreator from '../actions/playerActions'
@@ -44,26 +44,32 @@ class Game extends React.Component {
   }
 
   render () {
+    console.log(this.
+      props.players)
      return (
        <div className='gameContainer'>
          <div className='boardArea'>
            <Board />
-           <Player />
-           <CpuPlayer />
+           {this.props.players.map(player => {
+             if (player.type === 'user') {
+               return <UserPlayer key={player.id}/>
+             } else if (player.type === 'CPU') {
+               return <CpuPlayer key={player.id}/>
+             }
+           })}
          </div>
        </div>
      )
   }
 
   componentDidMount() {
-    startGame()
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    gridArea: state.player.gridArea,
-    cpuGridArea: state.cpuPlayer.gridArea,
+    players: state.player.players,
+    // cpuGridArea: state.cpuPlayer.gridArea,
   }
 }
 

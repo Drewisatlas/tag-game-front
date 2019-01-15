@@ -1,11 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import sprite from '../sprites/player2Trans.png'
+import sprite from '../sprites/player2.png'
 
 function CpuPlayer (props) {
   return(
     <div
-    player={props.player} 
+    player={props.player}
     style={{
       position: 'relative',
       backgroundImage:`url(${sprite})`,

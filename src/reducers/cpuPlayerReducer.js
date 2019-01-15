@@ -2,7 +2,7 @@
 
 const initialState={
   player: '2',
-  gridArea: '4/4',
+  gridArea: '4/5',
 
 }
 

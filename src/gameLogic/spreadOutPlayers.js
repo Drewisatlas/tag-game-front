@@ -8,11 +8,7 @@ const moveOneSpace = () => {
 }
 
 const spreadOutPlayers = () => {
-  state.game.players.forEach( player => {
-    if (player.taggable == true) {
-        moveOneSpace();
-    }
-  })
+  moveOneSpace()
 }
 
   //find the player that are not it and let them move 5 spaces

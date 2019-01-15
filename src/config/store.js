@@ -7,7 +7,6 @@ import gameReducer from '../reducers/gameReducer.js'
 //check reducer folders for reducers and defines a combined global state
 const rootReducer = combineReducers({
   player: playerReducer,
-  cpuPlayer: cpuPlayerReducer,
   game: gameReducer,
 })
 

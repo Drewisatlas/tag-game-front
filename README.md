@@ -16,8 +16,11 @@ This game is currently in development
 *Done* fix top row issue
 *Done* Make CPU Player component
 *Done* Get CPU player on board
+*Done* Make CPU Player Sprites
 
-Make CPU Player Sprites ( one *done*)
+Rebuild data structure for 4 players
+render them on page
+
 
 Basic turn logic
 *Done* built out basic game logic structure

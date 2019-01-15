@@ -1,13 +1,14 @@
 const initialState = {
-  players: [
-    {id: 1, lives: 3, taggable: false, controller: 'user'},
-    {id: 2, lives: 3, taggable: true, controller: 'CPU'},
-  ],
+  players: 4,
   it: 1, //who is currently it
+  whoseTurn: 1,
+  movesThisTurn: 3
 }
 
 const gameReducer = (state = initialState, action) => {
   switch (action.type) {
+    case 'NEXT_TURN':
+      return {...state, whoseTurn: action.whoseTurn }
     default :
     return state
   }
