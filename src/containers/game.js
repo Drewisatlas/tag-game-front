@@ -52,9 +52,9 @@ class Game extends React.Component {
            <Board />
            {this.props.players.map(player => {
              if (player.type === 'user') {
-               return <UserPlayer key={player.id}/>
+               return <UserPlayer key={player.id} player={player}/>
              } else if (player.type === 'CPU') {
-               return <CpuPlayer key={player.id}/>
+               return <CpuPlayer key={player.id} player={player}/>
              }
            })}
          </div>

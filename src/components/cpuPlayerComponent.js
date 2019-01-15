@@ -1,28 +1,28 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import sprite from '../sprites/player2.png'
+import sprite3 from '../sprites/player3.png'
+import sprite4 from '../sprites/player4.png'
 
 function CpuPlayer (props) {
+
+  let sprite = 'sprite' + `${props.player.id}`
+  console.log(sprite)
+
   return(
     <div
-    player={props.player}
+    player={props.player.id}
     style={{
       position: 'relative',
-      backgroundImage:`url(${sprite})`,
+      backgroundImage:`url(${props.player.sprite})`,
       backgroundPosition: '0 0',
       width: '50px',
       height: '73px',
-      gridArea: props.gridArea,
+      gridArea: props.player.gridArea,
       placeSelf:'center',
     }}
     />
   )
 }
 
-const mapStateToProps = (state) => {
-  return {
-    ...state.cpuPlayer,
-  }
-}
 
-export default connect(mapStateToProps)(CpuPlayer)
+export default CpuPlayer
