@@ -5,5 +5,4 @@ const movePlayer = (payload) => {
     }
 }
 
-
 export default movePlayer

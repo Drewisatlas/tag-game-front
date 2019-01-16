@@ -20,15 +20,19 @@ class Player extends React.Component {
     this.props.movePlayerDispatch(updatedPlayersArray)
   }
 
-  checkPlayerCollision = (playerCoords) => {
-    // chcek against each CPUs coords
-    return true
+  checkPlayerCollision = (coords) => {
+    return this.props.players.every(player => {
+      return player.gridArea !== coords
+    })
   }
 
   //Movement Methods //
 
   userMovementLogic = (event) => {
     event.preventDefault();
+    //this if statement only allows movement during a users turn
+    if (this.props.game.whoseTurn
+       === this.props.player.id) {
 
     let coordinates = this.props.player.gridArea.split('/')
     console.log(coordinates);
@@ -53,8 +57,11 @@ class Player extends React.Component {
       let updatedPlayer = {...this.props.player, gridArea: newCoordinates } // takes all the data out ot the human player and puts it into the new object
       this.updateAndDispatchPlayers(updatedPlayer);
       console.log(`Player 1 has moved to ${newCoordinates}`)
+
+      this.props.checkMoves() //passed down from the game component
     }
     console.log(`Currently at ${newCoordinates}`)
+  }
   }
 
   //life Cycle Methods //
@@ -83,6 +90,7 @@ class Player extends React.Component {
 const mapStateToProps = (state) => {
   return {
     players: state.players,
+    game: state.game,
   }
 }
 

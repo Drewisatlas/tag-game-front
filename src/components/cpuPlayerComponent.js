@@ -27,32 +27,36 @@ class CpuPlayer extends React.Component {
 
   randomCpuMovement = () => {
 
-    let coordinates = this.props.player.gridArea.split('/');
-    let xCoord = parseInt(coordinates[1])
-    let yCoord = parseInt(coordinates[0])
+    //this if statement only allows movement during a users turn
+    if (this.props.game.whoseTurn
+       === this.props.player.id) {
+      let coordinates = this.props.player.gridArea.split('/');
+      let xCoord = parseInt(coordinates[1])
+      let yCoord = parseInt(coordinates[0])
 
-    let randMoveDirection = Math.random();
+      let randMoveDirection = Math.random();
 
-    if (randMoveDirection <= 0.25) {
-      yCoord -= 1
-    } else if (randMoveDirection > 0.25 && randMoveDirection <= 0.50){
-      yCoord += 1
-    } else if (randMoveDirection > 0.50 && randMoveDirection <= 0.75){
-      xCoord += 1
-    } else if (randMoveDirection > 0.75 && randMoveDirection <= 1.00){
-      xCoord -= 1
-    }
+      if (randMoveDirection <= 0.25) {
+        yCoord -= 1
+      } else if (randMoveDirection > 0.25 && randMoveDirection <= 0.50){
+        yCoord += 1
+      } else if (randMoveDirection > 0.50 && randMoveDirection <= 0.75){
+        xCoord += 1
+      } else if (randMoveDirection > 0.75 && randMoveDirection <= 1.00){
+        xCoord -= 1
+      }
 
-    let newCoordinates = `${yCoord}/${xCoord}`
-    console.log(newCoordinates)
-    if ((yCoord <= 8 && yCoord >= 1)
-      && (xCoord >= 1 && xCoord <= 8)
-      && (this.checkPlayerCollision(newCoordinates))) {
-       //First: Let's construct a new player object to replace the existing one
-       let updatedCpuPlayer = {...this.props.player, gridArea: newCoordinates}
-       //second: we need to update the entire players array and dispatch it, we will make a fuction to do this
-       this.updateAndDispatchPlayers(updatedCpuPlayer);
-      console.log(`${this.props.player.name} has moved to ${newCoordinates}`)
+      let newCoordinates = `${yCoord}/${xCoord}`
+
+      if ((yCoord <= 8 && yCoord >= 1)
+        && (xCoord >= 1 && xCoord <= 8)
+        && (this.checkPlayerCollision(newCoordinates))) {
+         //First: Let's construct a new player object to replace the existing one
+         let updatedCpuPlayer = {...this.props.player, gridArea: newCoordinates}
+         //second: we need to update the entire players array and dispatch it, we will make a fuction to do this
+         this.updateAndDispatchPlayers(updatedCpuPlayer);
+        console.log(`${this.props.player.name} has moved to ${newCoordinates}`)
+      }
     }
   }
 
@@ -75,7 +79,6 @@ class CpuPlayer extends React.Component {
   }
 
    componentDidMount () {
-     setInterval(this.randomCpuMovement, 3000)
    }
 }
 

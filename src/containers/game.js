@@ -1,11 +1,10 @@
 import React from 'react';
-import {connect} from 'react-redux';
-
 import UserPlayer from '../components/userPlayerComponent'
 import CpuPlayer from '../components/cpuPlayerComponent'
 import Board from '../components/board'
-import movePlayerAC from '../actions/playerActions'
-import startGame from '../gameLogic/startGame.js'
+import {connect} from 'react-redux';
+import {nextTurn, decreaseMoves} from '../actions/gameActions'
+
 
 class Game extends React.Component {
 
@@ -13,6 +12,26 @@ class Game extends React.Component {
     return this.props.players.find( player => player.type === 'user')
   }
 
+  decrementCheckMoves = () => {
+    this.props.decreaseMoves()
+    if (this.props.game.moves === 0) {
+      this.nextPlayerTurn()
+    } else {
+      console.log(`${this.props.game.moves} remaining`)
+    }
+  }
+
+  startGameLoop = () => {
+    console.log('game begins')
+  }
+
+  nextPlayerTurn = () => {
+    //reset turn count
+    //check if its a user or cpu players
+    // if cpu check to see if interval
+    //if player
+    console.log(`lets go`)
+  }
 
   render () {
      return (
@@ -21,7 +40,7 @@ class Game extends React.Component {
            <Board />
            {this.props.players.map(player => {
              if (player.type === 'user') {
-               return <UserPlayer key={player.id} player={player}/>
+               return <UserPlayer key={player.id} player={player} checkMoves={this.decrementCheckMoves}/>
              } else if (player.type === 'CPU') {
                return <CpuPlayer key={player.id} player={player}/>
              }
@@ -31,14 +50,22 @@ class Game extends React.Component {
      )
   }
 
-  componentDidMount() {
+  componentDidMount () {
+    this.startGameLoop()
   }
 }
 
 const mapStateToProps = (state) => {
   return {
     players: state.players,
+    game: state.game,
   }
 }
 
-export default connect(mapStateToProps)(Game)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    decreaseMoves: () => {dispatch(decreaseMoves())},
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Game)
