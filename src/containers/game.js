@@ -10,7 +10,7 @@ import startGame from '../gameLogic/startGame.js'
 class Game extends React.Component {
 
   findHumanPlayer = () => {
-    return this.props.players.find( player => player.type === "user")
+    return this.props.players.find( player => player.type === 'user')
   }
 
   movementLogic = (event) => {
@@ -81,7 +81,6 @@ class Game extends React.Component {
   }
 
   componentDidMount() {
-    startGame()
   }
 }
 

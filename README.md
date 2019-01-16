@@ -20,12 +20,15 @@ This game is currently in development
 *Done* Rebuild data structure for 4 players
 *Done* render them on page
 
+Move movement functions into class components
+get random boys to move again
+
 
 Basic turn logic
 *Done* built out basic game logic structure
 cpu move from it player
 5 spaces at start
-5 paces at tag 
+5 paces at tag
   get three space movement turns
   cpu will move 3 spaces and the turn will end.
   I move three spaces and turn will end

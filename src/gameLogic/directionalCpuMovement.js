@@ -19,9 +19,9 @@ const directionalCpuMovement = (player, spaces, direction) => {
   }
 
   newCoordinates = `${yCoord}/${xCoord}`
-   let enemies = state.players.map( player => {
-     console.log(player.gridArea.split('/'))
-  })
+  //  let enemies = state.players.map( player => {
+  //    console.log(player.gridArea.split('/'))
+  // })
 
   //This checks to see if the cpu player has moved out of bounds or into a cell occupied by the user
    if ((yCoord <= 8 && yCoord >= 1) &&
