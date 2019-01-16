@@ -1,4 +1,4 @@
-import randomCpuMovement from './randomCpuMovement.js'
+
 import spreadOutPlayers from './spreadOutPlayers.js'
 import endGame from './endGame.js'
 import userMovement from './userMovement.js'

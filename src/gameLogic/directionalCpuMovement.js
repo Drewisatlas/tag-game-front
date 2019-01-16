@@ -1,5 +1,4 @@
 import store from '../config/store'
-import moveCpuActionCreator from '../actions/cpuPlayerActions'
 
 const directionalCpuMovement = (player, spaces, direction) => {
   let state = store.getState()

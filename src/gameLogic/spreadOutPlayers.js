@@ -1,12 +1,9 @@
 import store from '../config/store'
-import randomCpuMovement from './randomCpuMovement'
 import directionalCpuMovement from './directionalCpuMovement'
 
 let state = store.getState();
 
-const moveOneSpace = () => {
-  setTimeout(randomCpuMovement, 1000)
-}
+
 
 const spreadOutPlayers = () => {
    let state = store.getState()

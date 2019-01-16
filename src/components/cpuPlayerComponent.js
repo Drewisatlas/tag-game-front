@@ -6,7 +6,7 @@ class CpuPlayer extends React.Component {
 
   // Helper Functions //
 
-  checkCpuCollision = (coords) => {
+  checkPlayerCollision = (coords) => {
     return this.props.players.every(player => {
       return player.gridArea !== coords
     })
@@ -47,7 +47,7 @@ class CpuPlayer extends React.Component {
     console.log(newCoordinates)
     if ((yCoord <= 8 && yCoord >= 1)
       && (xCoord >= 1 && xCoord <= 8)
-      && (this.checkCpuCollision(newCoordinates))) {
+      && (this.checkPlayerCollision(newCoordinates))) {
        //First: Let's construct a new player object to replace the existing one
        let updatedCpuPlayer = {...this.props.player, gridArea: newCoordinates}
        //second: we need to update the entire players array and dispatch it, we will make a fuction to do this
