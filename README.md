@@ -23,6 +23,8 @@ This game is currently in development
 *Done* get random boys to move again
 
 Basic turn logic
+ *Done* move 3 spaces trigger next turn
+ build turn function
  All Players except it move 5 spaces at start of game
 
   get three space movement turns

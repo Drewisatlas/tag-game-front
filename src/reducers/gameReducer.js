@@ -11,6 +11,8 @@ const gameReducer = (state = initialState, action) => {
       return {...state, whoseTurn: action.whoseTurn }
     case 'DECREASE_MOVES':
       return {...state, moves: state.moves - 1}
+    case 'RESET_MOVES':
+      return {...state, moves: 3}
     default :
     return state
   }

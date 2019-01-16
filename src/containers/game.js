@@ -3,14 +3,15 @@ import UserPlayer from '../components/userPlayerComponent'
 import CpuPlayer from '../components/cpuPlayerComponent'
 import Board from '../components/board'
 import {connect} from 'react-redux';
-import {nextTurn, decreaseMoves} from '../actions/gameActions'
+import {nextTurn, decreaseMoves, resetMoves} from '../actions/gameActions'
 
 
 class Game extends React.Component {
 
-  findHumanPlayer = () => {
-    return this.props.players.find( player => player.type === 'user')
+  findPlayer = () => {
+    return this.props.players.find( player => player.type === this.props.game.player.whoseTurn)
   }
+
 
   decrementCheckMoves = () => {
     this.props.decreaseMoves()
@@ -25,9 +26,42 @@ class Game extends React.Component {
     console.log('game begins')
   }
 
+  winCheck = () => {
+    let winner;
+    let remaining = this.props.players.filter( player => {
+      return player.lives > 0
+    });
+    if (remaining <= 2) {
+      if (remaining[0].lives > remaining[1].lives) {
+        winner = remaining[0].name
+      } else if (remaining[0].lives < remaining[1].lives) {
+        winner = remaining[1].name
+      } else if (remaining[0].lives === remaining[1].lives) {
+        winner = "It's a tie"
+      } else {
+        console.log("something is wrong with winCheck!")
+      }
+      console.log(`There is a Winner: ${winner}`)
+    } else {
+      console.log('no winner yet')
+    }
+  }
+
+  playerTypeCheck = () => {
+    let currentPlayer = this.findPlayer();
+    if (currentPlayer.type === 'CPU') {
+      //do something that triggers the CPU player to move
+    }
+
+  }
+
   nextPlayerTurn = () => {
-    //reset turn count
-    //check if its a user or cpu players
+    this.winCheck()// check to see if anyone won
+    this.props.nextTurn(this.props.game.whoseTurn) //switch to next player
+    this.props.resetMoves() //reset turn count
+    this.playerTypeCheck() //check if its a user or cpu players
+
+
     // if cpu check to see if interval
     //if player
     console.log(`lets go`)
@@ -65,6 +99,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     decreaseMoves: () => {dispatch(decreaseMoves())},
+    resetMoves: () => {dispatch(resetMoves())},
+    nextTurn: (currentTurn) => {dispatch(nextTurn(currentTurn))},
+
   }
 }
 
