@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import movePlayerAC from '../actions/playerActions'
+import {decreaseMoves} from '../actions/gameActions'
 
 
 //Players should recieve props that will render the specific player
@@ -57,15 +58,14 @@ class Player extends React.Component {
       let updatedPlayer = {...this.props.player, gridArea: newCoordinates } // takes all the data out ot the human player and puts it into the new object
       this.updateAndDispatchPlayers(updatedPlayer);
       console.log(`Player 1 has moved to ${newCoordinates}`)
-
+      this.props.decreaseMoves()
       this.props.checkMoves() //passed down from the game component
     }
-    console.log(`Currently at ${newCoordinates}`)
   }
   }
 
   //life Cycle Methods //
-  componentWillMount () {
+  componentDidMount () {
       window.addEventListener('keydown', this.userMovementLogic)
   }
 
@@ -96,6 +96,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    decreaseMoves: () => {dispatch(decreaseMoves())},
     movePlayerDispatch: (data) => {dispatch(movePlayerAC(data))},
   }
 }

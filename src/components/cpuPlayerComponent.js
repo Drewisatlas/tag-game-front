@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import movePlayerAC from '../actions/playerActions.js'
+import {decreaseMoves} from '../actions/gameActions'
 
 class CpuPlayer extends React.Component {
 
@@ -23,13 +24,18 @@ class CpuPlayer extends React.Component {
     this.props.movePlayerDispatch(updatedPlayersArray)
   }
 
+  cpuTurn = () => {
+    console.log('CPU ping')
+    if (this.props.game.whoseTurn === this.props.player.id) {
+      console.log(`Ready Player ${this.props.player.id}`)
+      this.randomCpuMovement()
+    }
+  }
+
+
   // Movement Functions //
 
   randomCpuMovement = () => {
-
-    //this if statement only allows movement during a users turn
-    if (this.props.game.whoseTurn
-       === this.props.player.id) {
       let coordinates = this.props.player.gridArea.split('/');
       let xCoord = parseInt(coordinates[1])
       let yCoord = parseInt(coordinates[0])
@@ -48,15 +54,16 @@ class CpuPlayer extends React.Component {
 
       let newCoordinates = `${yCoord}/${xCoord}`
 
-      if ((yCoord <= 8 && yCoord >= 1)
-        && (xCoord >= 1 && xCoord <= 8)
-        && (this.checkPlayerCollision(newCoordinates))) {
-         //First: Let's construct a new player object to replace the existing one
-         let updatedCpuPlayer = {...this.props.player, gridArea: newCoordinates}
-         //second: we need to update the entire players array and dispatch it, we will make a fuction to do this
-         this.updateAndDispatchPlayers(updatedCpuPlayer);
-        console.log(`${this.props.player.name} has moved to ${newCoordinates}`)
-      }
+      if ((yCoord <= 8 && yCoord >= 1) && (xCoord >= 1 && xCoord <= 8) && (this.checkPlayerCollision(newCoordinates))) {
+        //First: Let's construct a new player object to replace the existing one
+        let updatedCpuPlayer = {...this.props.player, gridArea: newCoordinates}
+        //second: we need to update the entire players array and dispatch it, we will make a fuction to do this
+        this.updateAndDispatchPlayers(updatedCpuPlayer);
+        console.log(`Player ${this.props.player.id} has moved to ${newCoordinates}`)
+        this.props.decreaseMovesDispatch() // from map dispatch to props
+        this.props.checkMoves()//passed from game component
+
+
     }
   }
 
@@ -78,18 +85,25 @@ class CpuPlayer extends React.Component {
     )
   }
 
-   componentDidMount () {
-   }
+  componentDidMount () {
+    this.movementInterval = setInterval(this.cpuTurn, 1000)
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.movementInterval)
+  }
 }
 
 const mapStateToProps = (state) => {
   return {
     players: state.players,
+    game: state.game,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    decreaseMovesDispatch: () => {dispatch(decreaseMoves())},
     movePlayerDispatch: (data) => {dispatch(movePlayerAC(data))},
   }
 }

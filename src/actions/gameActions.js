@@ -1,14 +1,7 @@
-export function nextTurn(currentTurn){
-  if (currentTurn === 4){
-    return {
-      type: 'NEXT_TURN',
-      whoseTurn: 1,
-    }
-  } else {
-    return {
-      type: 'NEXT_TURN',
-      whoseTurn: currentTurn + 1,
-    }
+export function nextTurn(payload){
+  return {
+    type: 'NEXT_TURN',
+    whoseTurn: payload,
   }
 }
 
@@ -28,5 +21,11 @@ export function decreaseMoves (){
 export function resetMoves (){
   return {
     type: "RESET_MOVES"
+  }
+}
+
+export function readyPlayerOne (){
+  return {
+    type: "READY_PLAYER_ONE"
   }
 }

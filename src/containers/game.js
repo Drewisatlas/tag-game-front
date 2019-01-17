@@ -3,32 +3,41 @@ import UserPlayer from '../components/userPlayerComponent'
 import CpuPlayer from '../components/cpuPlayerComponent'
 import Board from '../components/board'
 import {connect} from 'react-redux';
-import {nextTurn, decreaseMoves, resetMoves} from '../actions/gameActions'
+import {nextTurn, decreaseMoves, resetMoves, readyPlayerOne} from '../actions/gameActions'
 
 
 class Game extends React.Component {
 
+
+// Helper functions //
   findPlayer = () => {
-    return this.props.players.find( player => player.type === this.props.game.player.whoseTurn)
+    return this.props.players.find( player => player.type === this.props.game.whoseTurn)
   }
 
 
-  decrementCheckMoves = () => {
-    this.props.decreaseMoves()
+  checkMoves = () => {
     if (this.props.game.moves === 0) {
-      this.nextPlayerTurn()
+      console.log('this players turn is over');
+      this.endPlayerTurn()
     } else {
       console.log(`${this.props.game.moves} remaining`)
     }
   }
 
-  startGameLoop = () => {
-    console.log('game begins')
+  tagCheck = () => {
+    if (this.props.game.it === this.props.player.id) { //if the player is it...
+      console.log("TAG!")
+      //get player locations
+      //get tag locations
+      // see if player is in a tag location
+      //update state to that player in the tag location
+      // run a spread out function
+    }
   }
 
   winCheck = () => {
     let winner;
-    let remaining = this.props.players.filter( player => {
+    let remaining = this.props.players.filter( player => { // creates an array of the remaining players
       return player.lives > 0
     });
     if (remaining <= 2) {
@@ -47,24 +56,40 @@ class Game extends React.Component {
     }
   }
 
-  playerTypeCheck = () => {
-    let currentPlayer = this.findPlayer();
-    if (currentPlayer.type === 'CPU') {
-      //do something that triggers the CPU player to move
+  nextTurn = () => {
+    if (this.props.game.whoseTurn === 4) { //switch to next player
+      let readyNextPlayer = 1
+       return this.props.nextTurn(readyNextPlayer)
+    } else {
+      let readyNextPlayer = this.props.game.whoseTurn + 1
+      return this.props.nextTurn(readyNextPlayer)
     }
-
   }
 
-  nextPlayerTurn = () => {
+  resetMoves= () => { //reset turn count
+    console.log('resetting moves')
+    this.props.resetMoves()
+  }
+
+
+  endPlayerTurn = () => {
+    console.log(" ending turn")
+    // this.tagCheck()//see if you are it and see if any players are in tag zone
     this.winCheck()// check to see if anyone won
-    this.props.nextTurn(this.props.game.whoseTurn) //switch to next player
-    this.props.resetMoves() //reset turn count
-    this.playerTypeCheck() //check if its a user or cpu players
+    this.resetMoves()
+    this.nextTurn()
+  }
 
 
-    // if cpu check to see if interval
-    //if player
-    console.log(`lets go`)
+
+
+    // console.log(`lets go player ${this.props.game.whoseTurn}`)
+
+  startGame = () => {
+    this.props.readyPlayerOne()
+  }
+  componentDidMount () {
+    this.startGame()
   }
 
   render () {
@@ -74,18 +99,14 @@ class Game extends React.Component {
            <Board />
            {this.props.players.map(player => {
              if (player.type === 'user') {
-               return <UserPlayer key={player.id} player={player} checkMoves={this.decrementCheckMoves}/>
+               return <UserPlayer key={player.id} player={player} checkMoves={this.checkMoves}/>
              } else if (player.type === 'CPU') {
-               return <CpuPlayer key={player.id} player={player}/>
+               return <CpuPlayer key={player.id} player={player} checkMoves={this.checkMoves} endTurn={this.endPlayerTurn}/>
              }
            })}
          </div>
        </div>
      )
-  }
-
-  componentDidMount () {
-    this.startGameLoop()
   }
 }
 
@@ -98,9 +119,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    decreaseMoves: () => {dispatch(decreaseMoves())},
     resetMoves: () => {dispatch(resetMoves())},
-    nextTurn: (currentTurn) => {dispatch(nextTurn(currentTurn))},
+    nextTurn: (payload) => {dispatch(nextTurn(payload))},
+    readyPlayerOne: () => {dispatch(readyPlayerOne())}
 
   }
 }
