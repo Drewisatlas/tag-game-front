@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import movePlayerAC from '../actions/playerActions'
+import {movePlayer} from '../actions/playerActions'
 import {decreaseMoves} from '../actions/gameActions'
 
 
@@ -97,7 +97,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     decreaseMoves: () => {dispatch(decreaseMoves())},
-    movePlayerDispatch: (data) => {dispatch(movePlayerAC(data))},
+    movePlayerDispatch: (data) => {dispatch(movePlayer(data))},
   }
 }
 

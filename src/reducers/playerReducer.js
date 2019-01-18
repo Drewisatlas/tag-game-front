@@ -16,6 +16,8 @@ const playerReducer = (state=initialState, action) => {
   switch(action.type) {
     case 'MOVE_PLAYER':
       return action.players //returns the updated players array with the updated grid area for the player that moved
+    case 'DECREMENT_LIFE':
+      return action.players
     default:
       return state
   }

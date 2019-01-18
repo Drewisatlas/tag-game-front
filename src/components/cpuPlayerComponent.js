@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import movePlayerAC from '../actions/playerActions.js'
+import {movePlayer} from '../actions/playerActions.js'
 import {decreaseMoves} from '../actions/gameActions'
 
 class CpuPlayer extends React.Component {
@@ -103,7 +103,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     decreaseMovesDispatch: () => {dispatch(decreaseMoves())},
-    movePlayerDispatch: (data) => {dispatch(movePlayerAC(data))},
+    movePlayerDispatch: (data) => {dispatch(movePlayer(data))},
   }
 }
 

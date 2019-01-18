@@ -1,8 +1,13 @@
-const movePlayer = (payload) => {
+export function movePlayer (payload) {
   return {
-      type: 'MOVE_PLAYER',
-      players: payload,
-    }
+    type: 'MOVE_PLAYER',
+    players: payload,
+  }
 }
 
-export default movePlayer
+export function decrementLife (payload) {
+  return {
+    type: 'DECREMENT_LIFE',
+    players: payload,
+  }
+}

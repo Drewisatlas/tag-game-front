@@ -5,6 +5,7 @@ import PlayerCard from '../components/PlayerCard'
 import Board from '../components/board'
 import {connect} from 'react-redux';
 import {nextTurn, tagPlayerAC, decreaseMoves, resetMoves, readyPlayerOne} from '../actions/gameActions'
+import {decrementLife} from '../actions/playerActions'
 
 
 class Game extends React.Component {
@@ -43,6 +44,20 @@ class Game extends React.Component {
     return array[Math.floor(Math.random() * array.length)]
   }
 
+  decrementLivesDispatch = (taggedPlayer) => {
+    //update the player object with one less life
+    let updatedPlayer = {...taggedPlayer, lives: taggedPlayer.lives - 1}
+    //we need to make an updated players array
+    let updatedPlayersArray = this.props.players.map (player => {
+      if (player.id === updatedPlayer.id) {
+        return updatedPlayer //in place of the existing player object
+      } else {
+        return player // return the original player
+      }
+    })
+    this.props.playerLosesLife(updatedPlayersArray)
+  }
+
   tagCheck = () => {
     let currPlayer = this.findPlayer()
     if (this.props.game.it === currPlayer.id) { //if the player is it...
@@ -58,20 +73,20 @@ class Game extends React.Component {
       })
 
       let taggedPlayer
-      if (taggablePlayers.length > 1) { // logic for more than one player
+      if (taggablePlayers.length > 1) { // if more than one player is in a tag zone
         taggedPlayer = this.getRandomPlayer(taggablePlayers)
         console.log(`TAG ${taggedPlayer.name}!`)
         this.props.tagPlayer(taggedPlayer.id)
-      } else if (taggablePlayers.length === 1){
+        this.props.decrementLivesDispatch(taggedPlayer)
+      } else if (taggablePlayers.length === 1){ // if a player is getting tagged
         taggedPlayer = taggablePlayers[0]
         console.log(`TAG ${taggedPlayer.name}!`)
         this.props.tagPlayer(taggedPlayer.id)
-      } else {
+        this.decrementLivesDispatch(taggedPlayer)
+      } else { //if no player is gettiong tagged
         console.log('there is no one to tag :(')
       }
     //update state to that player in the tag location
-
-
     }
   }
 
@@ -172,7 +187,8 @@ const mapDispatchToProps = (dispatch) => {
     resetMoves: () => {dispatch(resetMoves())},
     nextTurn: (payload) => {dispatch(nextTurn(payload))},
     readyPlayerOne: () => {dispatch(readyPlayerOne())},
-    tagPlayer: (payload) => {dispatch(tagPlayerAC(payload))}
+    tagPlayer: (payload) => {dispatch(tagPlayerAC(payload))},
+    playerLosesLife: (payload) => {dispatch(decrementLife(payload))},
 
   }
 }
