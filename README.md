@@ -3,7 +3,7 @@
 
 This game is currently in development
 
-###tasks
+##Setup
 *Done* set up file
 *Done* set up github repo
 *Done* Basic Project Setup
@@ -11,61 +11,75 @@ This game is currently in development
 *Done* set up gameboard
 *Done* get sprite on gameboard
 *Done* set up redux
-*Done* sprite can move with arrows
-*Done* Build Boundaries
-*Done* fix top row issue
 *Done* Make CPU Player component
 *Done* Get CPU player on board
 *Done* Make CPU Player Sprites
+
+##styling and presentation
+*Done* fix top row issue
+Find a 8 bit text font
+build display to communicate to the player
+
+##Basic Movement
+*Done* sprite can move with arrows
+*Done* Build Boundaries for movement
+
+##refactoring
 *Done* Rebuild data structure for 4 players
 *Done* render them on page
 *Done* Move movement functions into class components
 *Done* get random boys to move again
+
+##turn logic
 *Done* Basic turn logic
 *Done* move 3 spaces trigger next turn
 *Done* User moves three spaces and turn will end
 *Done* cpu will move 3 spaces and the turn will end.
 *Done* display player lives
 *Done* display who is it
-Tag Logic
 
-target non it players
-distance from the it player
-
-Start Screen
-How to play screen
-
-Find a 8 bit text font
+##Tag Logic
+*Done* if you are to the left right or above or below a non player they will be it.
+*Done* game state updates the new 'it' player
+*Done* Player state updates
 
 
-Things to check:
-Make
-
- All Players except it move 5 spaces at start of game
-
-
-
-
-  if you are to the left right or above or below a non player they will be it.
-  5 spaces turn begins again
-
-Get CPU player movement logic
+## CPU player movement logic
 *Done* moving at random
- calculating distance from players
-  moving closer to players when a cpu player is it
-
-
-implement "it" logic
-players move away from it
-the it player moves toward the closest player
+build a function to check if the cpu player is it or not
 build a function to determine distance
+build a function to calculate movement patterns
+it movement logic
+not it movement logic
 
+##implement "it" logic
+find the closest player for each player, then calculate the their tag spots
+build calculate how many x axis moves and y axis moves
+
+iterate through that array and if it can be reached in 3 moves
+make 3 directional movements
+
+if not move toward the closest player
+
+##implement "not it" logic
+players move away from it
+if the player is in the same column or row move away from it in the t pattern, otherwise
+check the left and right location and move away or
+check the above and below location and move away or
+a random movement with a small percentage 10%
+
+##end game logic
+
+##Start Screen
+How to play screen
 
 ###Stretch
 Select a player
 Multiple boards
 Login
 Player Stats
+
+5 player spread
 
 
 
