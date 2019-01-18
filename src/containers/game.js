@@ -1,6 +1,7 @@
 import React from 'react';
 import UserPlayer from '../components/userPlayerComponent'
 import CpuPlayer from '../components/cpuPlayerComponent'
+import PlayerCard from '../components/PlayerCard'
 import Board from '../components/board'
 import {connect} from 'react-redux';
 import {nextTurn, decreaseMoves, resetMoves, readyPlayerOne} from '../actions/gameActions'
@@ -95,6 +96,7 @@ class Game extends React.Component {
   render () {
      return (
        <div className='gameContainer'>
+       <div> </div>
          <div className='boardArea'>
            <Board />
            {this.props.players.map(player => {
@@ -104,6 +106,15 @@ class Game extends React.Component {
                return <CpuPlayer key={player.id} player={player} checkMoves={this.checkMoves} endTurn={this.endPlayerTurn}/>
              }
            })}
+         </div>
+         <div className='playerCardContainer'>
+          <div />
+           <div className='cardList'>
+             {this.props.players.map(player => {
+              return <PlayerCard key={player.id} player={player} />
+            })}
+            </div>
+            <div />
          </div>
        </div>
      )

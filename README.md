@@ -21,15 +21,22 @@ This game is currently in development
 *Done* render them on page
 *Done* Move movement functions into class components
 *Done* get random boys to move again
+*Done* Basic turn logic
+*Done* move 3 spaces trigger next turn
+*Done* User moves three spaces and turn will end
+*Done* cpu will move 3 spaces and the turn will end.
+Tag Logic
+display player lives
+Start Screen
+Player Health Cards
+Find a 8 bit text font
 
-Basic turn logic
- *Done* move 3 spaces trigger next turn
- build turn function
+
  All Players except it move 5 spaces at start of game
 
-  get three space movement turns
-  cpu will move 3 spaces and the turn will end.
-  I move three spaces and turn will end
+
+
+
   if you are to the left right or above or below a non player they will be it.
   5 spaces turn begins again
 
