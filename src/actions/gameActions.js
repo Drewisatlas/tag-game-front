@@ -5,7 +5,7 @@ export function nextTurn(payload){
   }
 }
 
-export function tagPlayer (payload){
+export function tagPlayerAC (payload){
   return {
     type: "TAG_PLAYER",
     it: payload,
@@ -28,4 +28,5 @@ export function readyPlayerOne (){
   return {
     type: "READY_PLAYER_ONE"
   }
+
 }

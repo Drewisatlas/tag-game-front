@@ -4,7 +4,7 @@ import CpuPlayer from '../components/cpuPlayerComponent'
 import PlayerCard from '../components/PlayerCard'
 import Board from '../components/board'
 import {connect} from 'react-redux';
-import {nextTurn, decreaseMoves, resetMoves, readyPlayerOne} from '../actions/gameActions'
+import {nextTurn, tagPlayerAC, decreaseMoves, resetMoves, readyPlayerOne} from '../actions/gameActions'
 
 
 class Game extends React.Component {
@@ -61,9 +61,11 @@ class Game extends React.Component {
       if (taggablePlayers.length > 1) { // logic for more than one player
         taggedPlayer = this.getRandomPlayer(taggablePlayers)
         console.log(`TAG ${taggedPlayer.name}!`)
+        this.props.tagPlayer(taggedPlayer.id)
       } else if (taggablePlayers.length === 1){
         taggedPlayer = taggablePlayers[0]
         console.log(`TAG ${taggedPlayer.name}!`)
+        this.props.tagPlayer(taggedPlayer.id)
       } else {
         console.log('there is no one to tag :(')
       }
@@ -169,7 +171,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     resetMoves: () => {dispatch(resetMoves())},
     nextTurn: (payload) => {dispatch(nextTurn(payload))},
-    readyPlayerOne: () => {dispatch(readyPlayerOne())}
+    readyPlayerOne: () => {dispatch(readyPlayerOne())},
+    tagPlayer: (payload) => {dispatch(tagPlayerAC(payload))}
 
   }
 }

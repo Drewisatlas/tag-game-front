@@ -16,6 +16,8 @@ const gameReducer = (state = initialState, action) => {
       return {...state, moves: 3}
     case 'READY_PLAYER_ONE':
       return {...state, whoseTurn: 1}
+    case 'TAG_PLAYER':
+      return {...state, it: action.it}
     default :
     return state
   }
