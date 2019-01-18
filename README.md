@@ -25,12 +25,21 @@ This game is currently in development
 *Done* move 3 spaces trigger next turn
 *Done* User moves three spaces and turn will end
 *Done* cpu will move 3 spaces and the turn will end.
+*Done* display player lives
+*Done* display who is it
 Tag Logic
-display player lives
+
+target non it players
+distance from the it player
+
 Start Screen
-Player Health Cards
+How to play screen
+
 Find a 8 bit text font
 
+
+Things to check:
+Make
 
  All Players except it move 5 spaces at start of game
 
@@ -45,14 +54,12 @@ Get CPU player movement logic
  calculating distance from players
   moving closer to players when a cpu player is it
 
-Turn logic for each player
+
 implement "it" logic
 players move away from it
 the it player moves toward the closest player
 build a function to determine distance
 
-display player lives
-player lives decrease on tag
 
 ###Stretch
 Select a player

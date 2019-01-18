@@ -12,7 +12,7 @@ class Game extends React.Component {
 
 // Helper functions //
   findPlayer = () => {
-    return this.props.players.find( player => player.type === this.props.game.whoseTurn)
+    return this.props.players.find( player => player.id === this.props.game.whoseTurn)
   }
 
 
@@ -25,14 +25,51 @@ class Game extends React.Component {
     }
   }
 
+  getTagLocations = (playerGridArea) => {
+    let coordinates = playerGridArea.split('/')
+    let xCoord = parseInt(coordinates[1])
+    let yCoord = parseInt(coordinates[0])
+
+    let spots = [
+      `${yCoord -= 1}/${xCoord}`,
+      `${yCoord+= 1}/${xCoord -= 1}`,
+      `${yCoord += 1}/${xCoord+= 1}`,
+      `${yCoord -= 1}/${xCoord += 1}`
+    ]
+    return spots
+  }
+
+  getRandomPlayer = (array) => {
+    return array[Math.floor(Math.random() * array.length)]
+  }
+
   tagCheck = () => {
-    if (this.props.game.it === this.props.player.id) { //if the player is it...
-      console.log("TAG!")
-      //get player locations
-      //get tag locations
-      // see if player is in a tag location
-      //update state to that player in the tag location
-      // run a spread out function
+    let currPlayer = this.findPlayer()
+    if (this.props.game.it === currPlayer.id) { //if the player is it...
+      let tagLocations = this.getTagLocations(currPlayer.gridArea) //get tag locations
+      console.log(`tag locations are ${tagLocations}`)
+
+      let taggablePlayers = this.props.players.filter( player => { // see if player is in a tag location
+        if (tagLocations.some( location => {
+          return location === player.gridArea
+        })) {
+          return player;
+        }
+      })
+
+      let taggedPlayer
+      if (taggablePlayers.length > 1) { // logic for more than one player
+        taggedPlayer = this.getRandomPlayer(taggablePlayers)
+        console.log(`TAG ${taggedPlayer.name}!`)
+      } else if (taggablePlayers.length === 1){
+        taggedPlayer = taggablePlayers[0]
+        console.log(`TAG ${taggedPlayer.name}!`)
+      } else {
+        console.log('there is no one to tag :(')
+      }
+    //update state to that player in the tag location
+
+
     }
   }
 
@@ -75,7 +112,7 @@ class Game extends React.Component {
 
   endPlayerTurn = () => {
     console.log(" ending turn")
-    // this.tagCheck()//see if you are it and see if any players are in tag zone
+    this.tagCheck()//see if you are it and see if any players are in tag zone
     this.winCheck()// check to see if anyone won
     this.resetMoves()
     this.nextTurn()

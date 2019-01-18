@@ -25,7 +25,6 @@ class CpuPlayer extends React.Component {
   }
 
   cpuTurn = () => {
-    console.log('CPU ping')
     if (this.props.game.whoseTurn === this.props.player.id) {
       console.log(`Ready Player ${this.props.player.id}`)
       this.randomCpuMovement()
