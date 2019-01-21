@@ -78,6 +78,7 @@ Select a player
 Multiple boards
 Login
 Player Stats
+if the it player starts their turn and a player is next to them its an automatic tag and they get to move
 
 5 player spread
 

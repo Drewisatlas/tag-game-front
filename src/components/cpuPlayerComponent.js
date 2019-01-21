@@ -6,11 +6,27 @@ import {decreaseMoves} from '../actions/gameActions'
 class CpuPlayer extends React.Component {
 
   // Helper Functions //
+  getCpuPlayerLocation = () => {
+    let playerLocation = this.props.player.gridArea
+    let itCoordinates = playerLocation.split('/')
+    let xCoord = parseInt(itCoordinates[1])
+    let yCoord = parseInt(itCoordinates[0])
+    return [yCoord, xCoord]
+  }
 
   checkPlayerCollision = (coords) => {
     return this.props.players.every(player => {
       return player.gridArea !== coords
     })
+  }
+
+  coinFlip = () => {
+    let flip = Math.random();
+    if (flip < 0.50) {
+      return "heads"
+    } else {
+      return "tails"
+    }
   }
 
   updateAndDispatchPlayers = (updatedCpuPlayer) => {
@@ -24,10 +40,44 @@ class CpuPlayer extends React.Component {
     this.props.movePlayerDispatch(updatedPlayersArray)
   }
 
+  closestPlayer = () => {
+    let itCoords = this.getCpuPlayerLocation()
+
+    let otherPlayerLocations = this.props.players.map (player => {
+      return player.gridArea
+    })
+
+    let closestTargetLocation
+    let tagCount = 0
+    otherPlayerLocations.forEach (location => {
+      let coordinates = location.split('/')
+      let xCoord = parseInt(coordinates[1])
+      let yCoord = parseInt(coordinates[0])
+
+      let movesToTag = (Math.abs(itCoords[1] - xCoord) + Math.abs(itCoords[0] - yCoord)) - 1
+      if (movesToTag > tagCount) {
+        closestTargetLocation = [yCoord, xCoord]
+      } else if (movesToTag = tagCount) {
+        let result = this.coinflip
+        if (result === "heads") {
+          closestTargetLocation = [yCoord, xCoord]
+        }
+      }
+    })
+     return closestTargetLocation
+  }
+
   cpuTurn = () => {
     if (this.props.game.whoseTurn === this.props.player.id) {
-      console.log(`Ready Player ${this.props.player.id}`)
-      this.randomCpuMovement()
+      if (this.props.game.it === this.props.player.id){
+        let target = this.closestPlayer()
+        let currentLocation =  this.getCpuPlayerLocation()
+        console.log(`current location : ${currentLocation}`)
+        console.log(`target:${target}`) //pick up here
+        this.randomCpuMovement()
+      } else {
+        this.randomCpuMovement()
+      }
     }
   }
 

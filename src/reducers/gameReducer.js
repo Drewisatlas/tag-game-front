@@ -1,6 +1,6 @@
 const initialState = {
   players: 4,
-  it: 1, //who is currently it
+  it: 2, //who is currently it
   whoseTurn: 0,
   moves: 3,
   gameOver: false,
