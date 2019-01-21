@@ -74,7 +74,7 @@ class CpuPlayer extends React.Component {
         let currentLocation =  this.getCpuPlayerLocation()
         console.log(`current location : ${currentLocation}`)
         console.log(`target:${target}`) //pick up here
-        this.randomCpuMovement()
+        this.directedCpuMovement(currentLocation, target)
       } else {
         this.randomCpuMovement()
       }
@@ -83,6 +83,46 @@ class CpuPlayer extends React.Component {
 
 
   // Movement Functions //
+
+  directedCpuMovement = (currentLocation, target) => {
+    //decide to go x or y first
+    let yCoord = currentLocation[0]
+    let xCoord = currentLocation[1]
+    //check for y coordinates
+    if (currentLocation[0] > (target[0]+1)) {
+      yCoord -= 1
+    } else if (currentLocation[0] < (target[0]-1)) {
+      yCoord += 1
+    } else if (currentLocation[1] > (target[1]-1)) {
+      xCoord -= 1
+    } else if (currentLocation[1] < (target[1]+1)) {
+      xCoord += 1
+    } else {
+      let randMoveDirection = Math.random();
+      if (randMoveDirection <= 0.25) {
+        yCoord -= 1
+      } else if (randMoveDirection > 0.25 && randMoveDirection <= 0.50){
+        yCoord += 1
+      } else if (randMoveDirection > 0.50 && randMoveDirection <= 0.75){
+        xCoord += 1
+      } else if (randMoveDirection > 0.75 && randMoveDirection <= 1.00){
+        xCoord -= 1
+      }
+    }
+    let newCoordinates = `${yCoord}/${xCoord}`
+
+    if ((yCoord <= 8 && yCoord >= 1) && (xCoord >= 1 && xCoord <= 8) && (this.checkPlayerCollision(newCoordinates))) {
+      //First: Let's construct a new player object to replace the existing one
+      let updatedCpuPlayer = {...this.props.player, gridArea: newCoordinates}
+      //second: we need to update the entire players array and dispatch it, we will make a fuction to do this
+      this.updateAndDispatchPlayers(updatedCpuPlayer);
+      console.log(`Player ${this.props.player.id} has moved to ${newCoordinates}`)
+      this.props.decreaseMovesDispatch() // from map dispatch to props
+      this.props.checkMoves()//passed from game component
+    } else {
+      this.randomCpuMovement()
+    }
+  }
 
   randomCpuMovement = () => {
       let coordinates = this.props.player.gridArea.split('/');
@@ -111,9 +151,7 @@ class CpuPlayer extends React.Component {
         console.log(`Player ${this.props.player.id} has moved to ${newCoordinates}`)
         this.props.decreaseMovesDispatch() // from map dispatch to props
         this.props.checkMoves()//passed from game component
-
-
-    }
+      }
   }
 
   // Lifecycle Methods //
