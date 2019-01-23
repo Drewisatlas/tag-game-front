@@ -46,29 +46,31 @@ build display to communicate to the player
 
 ## CPU player movement logic
 *Done* moving at random
-build a function to check if the cpu player is it or not
-build a function to determine distance
-build a function to calculate movement patterns
-it movement logic
-not it movement logic
+*Done* build a function to check if the cpu player is it or not
+*Done* build a function to determine distance
+*Done* build a function to calculate movement patterns
+*Done* it movement logic
+*Done* not it movement logic
 
 ##implement "it" logic
-find the closest player for each player, then calculate the their tag spots
-build calculate how many x axis moves and y axis moves
+*Done* find the closest player for each player, then calculate the their tag spots
+*Done* build calculate how many x axis moves and y axis moves
+*Done* make 3 directional movements
 
+ADVANCED
 iterate through that array and if it can be reached in 3 moves
-make 3 directional movements
-
 if not move toward the closest player
 
 ##implement "not it" logic
-players move away from it
-if the player is in the same column or row move away from it in the t pattern, otherwise
-check the left and right location and move away or
-check the above and below location and move away or
-a random movement with a small percentage 10%
+*Done* players move away from it
+*Done* if the player is in the same column or row move away from it in the t pattern, otherwise
+*Done* check the left and right location and move away or
+*Done* check the above and below location and move away or
+*Done* a random movement with a small percentage 10%
 
 ##end game logic
+When a player runs out of lives they are removed from the board
+Last player standing or last player of two with the most lives
 
 ##Start Screen
 How to play screen
