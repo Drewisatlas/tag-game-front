@@ -3,6 +3,7 @@ const initialState = {
 }
 
 const appReducer = (state = initialState, action) => {
+  console.log("inside appReducer")
   switch (action.type) {
     case 'START':
       return {...state, view: "start"}

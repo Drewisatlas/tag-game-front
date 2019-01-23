@@ -3,7 +3,7 @@ import UserPlayer from '../components/userPlayerComponent'
 import CpuPlayer from '../components/cpuPlayerComponent'
 import PlayerCard from '../components/PlayerCard'
 import Board from '../components/board'
-import {connect} from 'react-redux';
+import {connect} from 'react-redux'
 import {nextTurn, tagPlayerAC, decreaseMoves, resetMoves, readyPlayerOne} from '../actions/gameActions'
 import {decrementLife, removePlayer} from '../actions/playerActions'
 
@@ -135,7 +135,7 @@ class Game extends React.Component {
   }
 
   nextTurn = () => {
-    
+
     let currentPlayer = this.getPlayerObject(this.props.game.whoseTurn)
     if (currentPlayer === this.props.players[this.props.players.length -1]) { //switch to next player
       let readyNextPlayer = this.props.players[0]
