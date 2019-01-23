@@ -193,7 +193,7 @@ class Game extends React.Component {
            })}
          </div>
         <div> </div>
-         <div className='playerCardContainer'>
+         <div >
           <div />
            <div className='cardList'>
              {this.props.players.map(player => {

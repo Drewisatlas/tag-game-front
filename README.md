@@ -69,10 +69,19 @@ if not move toward the closest player
 *Done* a random movement with a small percentage 10%
 
 ##end game logic
-When a player runs out of lives they are removed from the board
-Last player standing or last player of two with the most lives
+*Done* When a player runs out of lives they are removed from the board
+*Done* Last player standing
+
+##Game Screen
+*Done* Player cards design
+*Done* background
+key messages (whose turn it is)
+*Done* show who is it (border?)
+*Done* lives shown as hearts
 
 ##Start Screen
+make a logo
+design a grid outline
 How to play screen
 
 ###Stretch
