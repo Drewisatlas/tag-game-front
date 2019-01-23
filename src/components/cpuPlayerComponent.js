@@ -91,7 +91,6 @@ class CpuPlayer extends React.Component {
   // Movement Functions //
 
   evasiveCpuMovement = () => {
-    debugger
     let itCoordinates = this.getItPlayer().gridArea.split("/")
     let xCoord = parseInt(itCoordinates[1])
     let yCoord = parseInt(itCoordinates[0])

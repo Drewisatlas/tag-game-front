@@ -68,6 +68,7 @@ class Game extends React.Component {
   }
 
   tagCheck = () => {
+    debugger
     let currPlayer = this.findPlayer()
     if (this.props.game.it === currPlayer.id) { //if the player is it...
       let tagLocations = this.getTagLocations(currPlayer.gridArea) //get tag locations
@@ -85,13 +86,22 @@ class Game extends React.Component {
       if (taggablePlayers.length > 1) { // if more than one player is in a tag zone
         taggedPlayer = this.getRandomPlayer(taggablePlayers)
         console.log(`TAG ${taggedPlayer.name}!`)
-        this.props.tagPlayer(taggedPlayer.id)
         this.decrementLivesDispatch(taggedPlayer)
+        if (taggedPlayer.lives - 1 > 0) {
+        this.props.tagPlayer(taggedPlayer.id)
+        console.log(`${taggedPlayer.name}is now It!`)
+        } else {
+        console.log(`${taggedPlayer.name} is eliminated!`)
+        }
       } else if (taggablePlayers.length === 1){ // if a player is getting tagged
         taggedPlayer = taggablePlayers[0]
-        console.log(`TAG ${taggedPlayer.name}!`)
-        this.props.tagPlayer(taggedPlayer.id)
         this.decrementLivesDispatch(taggedPlayer)
+        if (taggedPlayer.lives -1 > 0) {
+        this.props.tagPlayer(taggedPlayer.id)
+        console.log(`TAG ${taggedPlayer.name}!`)
+        } else {
+        console.log(`${taggedPlayer.name} is eliminated!`)
+        }
       } else { //if no player is gettiong tagged
         console.log('there is no one to tag :(')
       }
