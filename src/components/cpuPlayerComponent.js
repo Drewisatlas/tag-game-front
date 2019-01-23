@@ -14,6 +14,12 @@ class CpuPlayer extends React.Component {
     return [yCoord, xCoord]
   }
 
+  getItPlayer = () => {
+    return this.props.players.find( player => {
+      return player.id === this.props.game.it
+    })
+  }
+
   checkPlayerCollision = (coords) => {
     return this.props.players.every(player => {
       return player.gridArea !== coords
@@ -24,7 +30,7 @@ class CpuPlayer extends React.Component {
     let flip = Math.random();
     if (flip < 0.50) {
       return "heads"
-    } else {
+    } else if (flip >= 0.50) {
       return "tails"
     }
   }
@@ -75,14 +81,54 @@ class CpuPlayer extends React.Component {
         console.log(`current location : ${currentLocation}`)
         console.log(`target:${target}`) //pick up here
         this.directedCpuMovement(currentLocation, target)
-      } else {
-        this.randomCpuMovement()
+      } else { // if CPU player is not it
+        this.evasiveCpuMovement()
       }
     }
   }
 
 
   // Movement Functions //
+
+  evasiveCpuMovement = () => {
+    debugger
+    let itCoordinates = this.getItPlayer().gridArea.split("/")
+    let xCoord = parseInt(itCoordinates[1])
+    let yCoord = parseInt(itCoordinates[0])
+
+    let playerCoords = this.getCpuPlayerLocation() //has already been turned into a array of integers
+    let direction = this.coinFlip()
+
+    if (direction === "heads") { //move x axis
+      if (xCoord > (playerCoords[1])) {
+        playerCoords[1] -= 1
+      } else if (xCoord < (playerCoords[1])) {
+        playerCoords[1] += 1
+      }
+    } else if(direction === "tails") { //move y axis
+      if (yCoord > (playerCoords[0])) {
+        playerCoords[0] -= 1
+      } else if (yCoord < (playerCoords[0])) {
+        playerCoords[0] += 1
+      }
+    }
+
+    let newCoordinates = `${playerCoords[0]}/${playerCoords[1]}`
+
+    if ((playerCoords[0] <= 8 && playerCoords[0] >= 1) &&
+      (playerCoords[1] >= 1 && playerCoords[1] <= 8) &&
+      (this.checkPlayerCollision(newCoordinates))) {
+      //First: Let's construct a new player object to replace the existing one
+      let updatedCpuPlayer = {...this.props.player, gridArea: newCoordinates}
+      //second: we need to update the entire players array and dispatch it, we will make a fuction to do this
+      this.updateAndDispatchPlayers(updatedCpuPlayer);
+      console.log(`Player ${this.props.player.id} has moved to ${newCoordinates}`)
+      this.props.decreaseMovesDispatch() // from map dispatch to props
+      this.props.checkMoves()//passed from game component
+    } else {
+      this.randomCpuMovement()
+    }
+  }
 
   directedCpuMovement = (currentLocation, target) => {
     //decide to go x or y first

@@ -32,10 +32,14 @@ class Game extends React.Component {
     let yCoord = parseInt(coordinates[0])
 
     let spots = [
-      `${yCoord -= 1}/${xCoord}`,
-      `${yCoord+= 1}/${xCoord -= 1}`,
-      `${yCoord += 1}/${xCoord+= 1}`,
-      `${yCoord -= 1}/${xCoord += 1}`
+      `${yCoord - 1}/${xCoord}`,
+      `${yCoord - 1}/${xCoord - 1}`,
+      `${yCoord - 1}/${xCoord + 1}`,
+      `${yCoord}/${xCoord - 1}`,
+      `${yCoord}/${xCoord + 1}`,
+      `${yCoord + 1}/${xCoord}`,
+      `${yCoord + 1}/${xCoord - 1}`,
+      `${yCoord + 1}/${xCoord + 1}`
     ]
     return spots
   }
@@ -45,6 +49,7 @@ class Game extends React.Component {
   }
 
   decrementLivesDispatch = (taggedPlayer) => {
+
     //update the player object with one less life
     let updatedPlayer = {...taggedPlayer, lives: taggedPlayer.lives - 1}
     //we need to make an updated players array
@@ -77,7 +82,7 @@ class Game extends React.Component {
         taggedPlayer = this.getRandomPlayer(taggablePlayers)
         console.log(`TAG ${taggedPlayer.name}!`)
         this.props.tagPlayer(taggedPlayer.id)
-        this.props.decrementLivesDispatch(taggedPlayer)
+        this.decrementLivesDispatch(taggedPlayer)
       } else if (taggablePlayers.length === 1){ // if a player is getting tagged
         taggedPlayer = taggablePlayers[0]
         console.log(`TAG ${taggedPlayer.name}!`)
