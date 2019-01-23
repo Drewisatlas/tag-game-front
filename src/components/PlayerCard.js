@@ -12,9 +12,11 @@ class PlayerCard extends React.Component {
 
   displayHearts = () => {
     let lives = this.props.player.lives
+    let livesArray = []
     for (let i = 0; i < lives; i++) {
-      return <img src={heart}/>
+      livesArray.push(<img src={heart} style={{paddingRight: "5px"}}/>)
     }
+    return livesArray
   }
 
   render () {

@@ -29,6 +29,8 @@ class CpuPlayer extends React.Component {
   checkForTargets = () => {
     if ( this.props.players.length > 1) {
       return true
+    } else {
+      return false
     }
   }
 
