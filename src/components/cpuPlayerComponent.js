@@ -71,8 +71,8 @@ class CpuPlayer extends React.Component {
       let movesToTag = (Math.abs(itCoords[1] - xCoord) + Math.abs(itCoords[0] - yCoord)) - 1
       if (movesToTag > tagCount) {
         closestTargetLocation = [yCoord, xCoord]
-      } else if (movesToTag = tagCount) {
-        let result = this.coinflip
+      } else if (movesToTag === tagCount) {
+        let result = this.coinFlip()
         if (result === "heads") {
           closestTargetLocation = [yCoord, xCoord]
         }
