@@ -17,7 +17,7 @@ This game is currently in development
 
 ##styling and presentation
 *Done* fix top row issue
-Find a 8 bit text font
+*Done* Find a 8 bit text font
 build display to communicate to the player
 
 ##Basic Movement
