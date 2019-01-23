@@ -26,6 +26,12 @@ class CpuPlayer extends React.Component {
     })
   }
 
+  checkForTargets = () => {
+    if ( this.props.players.length > 1) {
+      return true
+    }
+  }
+
   coinFlip = () => {
     let flip = Math.random();
     if (flip < 0.50) {
@@ -74,6 +80,7 @@ class CpuPlayer extends React.Component {
   }
 
   cpuTurn = () => {
+    if (this.checkForTargets() === true) {
     if (this.props.game.whoseTurn === this.props.player.id) {
       if (this.props.game.it === this.props.player.id){
         let target = this.closestPlayer()
@@ -85,6 +92,7 @@ class CpuPlayer extends React.Component {
         this.evasiveCpuMovement()
       }
     }
+  }
   }
 
 
