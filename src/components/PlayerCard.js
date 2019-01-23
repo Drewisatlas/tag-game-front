@@ -12,7 +12,7 @@ class PlayerCard extends React.Component {
 
   render () {
     return (
-      <div player={this.props.player.id}>
+      <div player={this.props.player.id} className='playerCardContainer'>
         <p>{this.itCheck()} </p>
         <div style={{position: 'relative', backgroundImage:`url(${this.props.player.sprite})`, backgroundPosition: '0 0', width: '50px', height: '73px', }} />
         <h3>{this.props.player.name}'s Lives: {this.props.player.lives} </h3>

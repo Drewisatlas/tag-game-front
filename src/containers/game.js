@@ -192,6 +192,7 @@ class Game extends React.Component {
            }
            })}
          </div>
+        <div> </div>
          <div className='playerCardContainer'>
           <div />
            <div className='cardList'>
