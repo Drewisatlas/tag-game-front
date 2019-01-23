@@ -5,7 +5,7 @@ import PlayerCard from '../components/PlayerCard'
 import Board from '../components/board'
 import {connect} from 'react-redux';
 import {nextTurn, tagPlayerAC, decreaseMoves, resetMoves, readyPlayerOne} from '../actions/gameActions'
-import {decrementLife} from '../actions/playerActions'
+import {decrementLife, removePlayer} from '../actions/playerActions'
 
 
 class Game extends React.Component {
@@ -68,7 +68,6 @@ class Game extends React.Component {
   }
 
   tagCheck = () => {
-    debugger
     let currPlayer = this.findPlayer()
     if (this.props.game.it === currPlayer.id) { //if the player is it...
       let tagLocations = this.getTagLocations(currPlayer.gridArea) //get tag locations
@@ -88,19 +87,21 @@ class Game extends React.Component {
         console.log(`TAG ${taggedPlayer.name}!`)
         this.decrementLivesDispatch(taggedPlayer)
         if (taggedPlayer.lives - 1 > 0) {
-        this.props.tagPlayer(taggedPlayer.id)
-        console.log(`${taggedPlayer.name}is now It!`)
+          this.props.tagPlayer(taggedPlayer.id)
+          console.log(`${taggedPlayer.name}is now It!`)
         } else {
-        console.log(`${taggedPlayer.name} is eliminated!`)
+          this.eliminatePlayer(taggedPlayer)
+          console.log(`${taggedPlayer.name} is eliminated!`)
         }
       } else if (taggablePlayers.length === 1){ // if a player is getting tagged
         taggedPlayer = taggablePlayers[0]
         this.decrementLivesDispatch(taggedPlayer)
         if (taggedPlayer.lives -1 > 0) {
-        this.props.tagPlayer(taggedPlayer.id)
-        console.log(`TAG ${taggedPlayer.name}!`)
+          this.props.tagPlayer(taggedPlayer.id)
+          console.log(`TAG ${taggedPlayer.name}!`)
         } else {
-        console.log(`${taggedPlayer.name} is eliminated!`)
+          this.eliminatePlayer(taggedPlayer)
+          console.log(`${taggedPlayer.name} is eliminated!`)
         }
       } else { //if no player is gettiong tagged
         console.log('there is no one to tag :(')
@@ -111,22 +112,10 @@ class Game extends React.Component {
 
   winCheck = () => {
     let winner;
-    let remaining = this.props.players.filter( player => { // creates an array of the remaining players
-      return player.lives > 0
-    });
-    if (remaining <= 2) {
-      if (remaining[0].lives > remaining[1].lives) {
-        winner = remaining[0].name
-      } else if (remaining[0].lives < remaining[1].lives) {
-        winner = remaining[1].name
-      } else if (remaining[0].lives === remaining[1].lives) {
-        winner = "It's a tie"
-      } else {
-        console.log("something is wrong with winCheck!")
-      }
-      console.log(`There is a Winner: ${winner}`)
+    if (this.props.players.length === 1) {
+      console.log("Game Over")
     } else {
-      console.log('no winner yet')
+      console.log("No winner yet")
     }
   }
 
@@ -138,33 +127,26 @@ class Game extends React.Component {
     }
   }
 
-  nextTurn = () => {
+  eliminatePlayer = (eliminatedPlayer) => {
+    let updatedPlayersArray = this.props.players.filter ( player => {
+      return player.id !== eliminatedPlayer.id
+    })
+    this.props.removePlayer(updatedPlayersArray)
+  }
 
-    if (this.props.game.whoseTurn === 4) { //switch to next player
-      let readyNextPlayer = 1
-      let nextPlayer = this.getPlayerObject(readyNextPlayer)
-      if (this.checkForElimination(nextPlayer)) {
-        return this.props.nextTurn(readyNextPlayer)
-      } else {
-       readyNextPlayer = this.props.players.find(player => {
-          return this.checkForElimination(player)
-        })
+  nextTurn = () => {
+    
+    let currentPlayer = this.getPlayerObject(this.props.game.whoseTurn)
+    if (currentPlayer === this.props.players[this.props.players.length -1]) { //switch to next player
+      let readyNextPlayer = this.props.players[0]
         return this.props.nextTurn(readyNextPlayer.id)
-      }
     } else {
-      let readyNextPlayer = this.props.game.whoseTurn + 1
-      let nextPlayer = this.getPlayerObject(readyNextPlayer)
-      if (this.checkForElimination(nextPlayer)) {
-        return this.props.nextTurn(readyNextPlayer)
-      } else {
-        let survivingPlayers = this.props.players.filter(player => {
-           return this.checkForElimination(player)
-         })
-         readyNextPlayer = survivingPlayers.find(player => {
-           return player.id > this.props.game.whoseTurn
-         })
+      let playerIndex = this.props.players.findIndex( player => {
+        return player === currentPlayer
+      })
+      let readyNextPlayer = this.props.players[playerIndex + 1]
+      console.log(readyNextPlayer)
       return this.props.nextTurn(readyNextPlayer.id)
-      }
     }
   }
 
@@ -238,7 +220,7 @@ const mapDispatchToProps = (dispatch) => {
     readyPlayerOne: () => {dispatch(readyPlayerOne())},
     tagPlayer: (payload) => {dispatch(tagPlayerAC(payload))},
     playerLosesLife: (payload) => {dispatch(decrementLife(payload))},
-
+    removePlayer: (payload) => {dispatch(removePlayer(payload))},
   }
 }
 
