@@ -16,6 +16,10 @@ class Game extends React.Component {
     return this.props.players.find( player => player.id === this.props.game.whoseTurn)
   }
 
+  getPlayerObject = (id) => {
+    return this.props.players.find( player => player.id === id)
+  }
+
 
   checkMoves = () => {
     if (this.props.game.moves === 0) {
@@ -116,13 +120,41 @@ class Game extends React.Component {
     }
   }
 
+  checkForElimination = (nextPlayer) => {
+    if (nextPlayer.lives > 0) {
+      return true
+    } else {
+      return false
+    }
+  }
+
   nextTurn = () => {
+
     if (this.props.game.whoseTurn === 4) { //switch to next player
       let readyNextPlayer = 1
-       return this.props.nextTurn(readyNextPlayer)
+      let nextPlayer = this.getPlayerObject(readyNextPlayer)
+      if (this.checkForElimination(nextPlayer)) {
+        return this.props.nextTurn(readyNextPlayer)
+      } else {
+       readyNextPlayer = this.props.players.find(player => {
+          return this.checkForElimination(player)
+        })
+        return this.props.nextTurn(readyNextPlayer.id)
+      }
     } else {
       let readyNextPlayer = this.props.game.whoseTurn + 1
-      return this.props.nextTurn(readyNextPlayer)
+      let nextPlayer = this.getPlayerObject(readyNextPlayer)
+      if (this.checkForElimination(nextPlayer)) {
+        return this.props.nextTurn(readyNextPlayer)
+      } else {
+        let survivingPlayers = this.props.players.filter(player => {
+           return this.checkForElimination(player)
+         })
+         readyNextPlayer = survivingPlayers.find(player => {
+           return player.id > this.props.game.whoseTurn
+         })
+      return this.props.nextTurn(readyNextPlayer.id)
+      }
     }
   }
 
@@ -159,11 +191,13 @@ class Game extends React.Component {
          <div className='boardArea'>
            <Board />
            {this.props.players.map(player => {
+             if (player.lives > 0) {
              if (player.type === 'user') {
                return <UserPlayer key={player.id} player={player} checkMoves={this.checkMoves}/>
              } else if (player.type === 'CPU') {
                return <CpuPlayer key={player.id} player={player} checkMoves={this.checkMoves} endTurn={this.endPlayerTurn}/>
              }
+           }
            })}
          </div>
          <div className='playerCardContainer'>

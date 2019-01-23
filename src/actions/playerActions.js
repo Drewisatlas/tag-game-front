@@ -11,3 +11,10 @@ export function decrementLife (payload) {
     players: payload,
   }
 }
+
+export function removePlayer (payload) {
+  return {
+    type: 'REMOVE_PLAYER',
+    players: payload,
+  }
+}
