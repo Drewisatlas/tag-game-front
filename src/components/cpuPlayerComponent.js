@@ -63,6 +63,7 @@ class CpuPlayer extends React.Component {
 
     let closestTargetLocation
     let tagCount = 0
+    
     otherPlayerLocations.forEach (location => {
       let coordinates = location.split('/')
       let xCoord = parseInt(coordinates[1])
