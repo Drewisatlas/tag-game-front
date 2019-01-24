@@ -21,9 +21,12 @@ code {
 }
 
 .instructionsArea {
-  background-color: #FEB95F;
+  background-color: white;
   margin: 20px 0px 20px 0px;
   padding: 0px 20px 0px 20px;
+  /* display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; */
 
 }
 
