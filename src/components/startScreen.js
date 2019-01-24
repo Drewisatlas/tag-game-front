@@ -11,10 +11,14 @@ class StartScreen extends React.Component {
 
   render () {
     return (
+      <div className="startScreen">
+      <div />
       <div>
-        <h1> Let's Play Tag! </h1>
-        <h2 onClick={() => this.props.game()}> Start </h2>
-        <h2 onClick={() => this.props.instructions()}> Instructions </h2>
+        <h1 style ={{textAlign:'center', fontSize:'80px', color:"white"}}> Let's Play Tag! </h1>
+        <h1 onClick={() => this.props.game()}> Start </h1>
+        <h1 onClick={() => this.props.instructions()}> Instructions </h1>
+      </div>
+      <div />
       </div>
     )
   }

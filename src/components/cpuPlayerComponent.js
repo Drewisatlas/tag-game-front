@@ -71,7 +71,7 @@ class CpuPlayer extends React.Component {
       closestTargetLocation = [yCoord, xCoord]
 
     } else {
-      
+
       otherPlayerLocations.forEach (location => {
         let coordinates = location.split('/')
         let xCoord = parseInt(coordinates[1])
@@ -239,7 +239,7 @@ class CpuPlayer extends React.Component {
   }
 
   componentDidMount () {
-    this.movementInterval = setInterval(this.cpuTurn, 1000)
+    this.movementInterval = setInterval(this.cpuTurn, 750)
   }
 
   componentWillUnmount() {

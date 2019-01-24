@@ -22,7 +22,7 @@ class Instructions extends React.Component {
             <div style={{}}> <h1> How To Play Tag! </h1>  </div>
             <div style={{}}> <h3> There are 4 players in the game </h3>  </div>
             <div style={{backgroundImage:`url(${andrew})`, backgroundPosition: '0 0', width: '50px', height: '73px',}} />
-            <div> <p> You are "Andrew" the dashingly handsome 8-bit hero with brown hair!</p> </div>
+            <div> <p> You are "Andrew" the dashingly handsome 8-bit hero with brown hair! Move him with the Arrow keys!</p> </div>
               <div style={{backgroundImage:`url(${pete})`, backgroundPosition: '0 0', width: '50px', height: '73px',}} />
             <div> <p> "Pete" plays in a succesful Pop-Punk band and has black hair.</p> </div>
               <div style={{backgroundImage:`url(${jeremy})`, backgroundPosition: '0 0', width: '50px', height: '73px',}} />

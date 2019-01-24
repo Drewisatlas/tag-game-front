@@ -13,6 +13,12 @@ code {
     monospace;
 }
 
+.startScreen {
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+  margin-top: 100px;
+}
+
 
 .instructionsContainer {
   display: grid;
