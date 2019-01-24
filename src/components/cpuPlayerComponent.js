@@ -63,23 +63,33 @@ class CpuPlayer extends React.Component {
 
     let closestTargetLocation
     let tagCount = 0
-    
-    otherPlayerLocations.forEach (location => {
-      let coordinates = location.split('/')
+
+    if (otherPlayerLocations === 1) {
+      let coordinates = otherPlayerLocations[0].split('/')
       let xCoord = parseInt(coordinates[1])
       let yCoord = parseInt(coordinates[0])
+      closestTargetLocation = [yCoord, xCoord]
 
-      let movesToTag = (Math.abs(itCoords[1] - xCoord) + Math.abs(itCoords[0] - yCoord)) - 1
-      if (movesToTag > tagCount) {
-        closestTargetLocation = [yCoord, xCoord]
-      } else if (movesToTag === tagCount) {
-        let result = this.coinFlip()
-        if (result === "heads") {
+    } else {
+      
+      otherPlayerLocations.forEach (location => {
+        let coordinates = location.split('/')
+        let xCoord = parseInt(coordinates[1])
+        let yCoord = parseInt(coordinates[0])
+
+        let movesToTag = (Math.abs(itCoords[1] - xCoord) + Math.abs(itCoords[0] - yCoord)) - 1
+        if (movesToTag > tagCount) {
           closestTargetLocation = [yCoord, xCoord]
+        } else if (movesToTag === tagCount) {
+          let result = this.coinFlip()
+          if (result === "heads") {
+            closestTargetLocation = [yCoord, xCoord]
+          }
         }
-      }
-    })
-     return closestTargetLocation
+      })
+    }
+
+    return closestTargetLocation
   }
 
   cpuTurn = () => {
