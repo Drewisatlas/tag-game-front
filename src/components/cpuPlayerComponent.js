@@ -57,14 +57,15 @@ class CpuPlayer extends React.Component {
   closestPlayer = () => {
     let itCoords = this.getCpuPlayerLocation()
 
-    let otherPlayerLocations = this.props.players.map (player => {
+    let otherPlayers = this.props.players.filter(p => p.id !== this.props.player.id)
+    let otherPlayerLocations = otherPlayers.map (player => {
       return player.gridArea
     })
 
     let closestTargetLocation
     let tagCount = 0
 
-    if (otherPlayerLocations === 1) {
+    if (otherPlayerLocations.length === 1) {
       let coordinates = otherPlayerLocations[0].split('/')
       let xCoord = parseInt(coordinates[1])
       let yCoord = parseInt(coordinates[0])
@@ -87,6 +88,10 @@ class CpuPlayer extends React.Component {
           }
         }
       })
+    }
+
+    if (closestTargetLocation === undefined) {
+      closestTargetLocation = otherPlayerLocations[0]
     }
 
     return closestTargetLocation

@@ -60,7 +60,7 @@ code {
 
 .playerCardContainer {
   background-color: #FEB95F;
-  border: 2px solid Black;
+  /* border: 2px solid Black; */
   display: grid;
   grid-template-columns: 1fr 4fr;
   grid-template-rows: 1fr 2fr 2fr ;

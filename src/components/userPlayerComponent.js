@@ -64,6 +64,8 @@ class Player extends React.Component {
   }
   }
 
+
+
   //life Cycle Methods //
   componentDidMount () {
       window.addEventListener('keydown', this.userMovementLogic)

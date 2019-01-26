@@ -84,6 +84,11 @@ make a logo
 design a grid outline
 How to play screen
 
+##Game logic
+*Done* show who is it. provide a colored border.
+prevent tag backs
+eliminate lives if a player can not tag in two turn phases
+
 ###Stretch
 Select a player
 Multiple boards
